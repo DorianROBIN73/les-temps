@@ -6,21 +6,23 @@
   <title>Apprendre et s'exercer en français</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f4f4f4;
+      background-color: #f9f9f9;
+      color: #333;
     }
     header {
-      background-color: #333;
+      background-color: #6a5acd; /* Couleur violette */
       color: white;
-      padding: 1em 0;
+      padding: 1.5em 0;
       text-align: center;
+      border-bottom: 5px solid #554994;
     }
     nav {
-      background-color: #444;
+      background-color: #8470ff; /* Violet plus clair */
       color: white;
-      padding: 0.5em 0;
+      padding: 0.75em 0;
     }
     nav ul {
       padding: 0;
@@ -30,23 +32,25 @@
     }
     nav li {
       display: inline;
-      margin: 0 1em;
+      margin: 0 1.5em;
     }
     nav a {
       color: white;
       text-decoration: none;
-      padding: 0.5em 1em;
-      border-radius: 5px;
+      padding: 0.75em 1.25em;
+      border-radius: 25px;
+      background-color: rgba(255, 255, 255, 0.1);
+      transition: background-color 0.3s;
     }
     nav a:hover {
-      background-color: #555;
+      background-color: rgba(255, 255, 255, 0.3);
     }
     #content {
-      padding: 20px;
+      padding: 2em;
     }
     .tab-content {
       display: none;
-      margin-top: 20px;
+      margin-top: 2em;
     }
     .tab-content.active {
       display: block;
@@ -54,35 +58,62 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 20px;
+      margin-bottom: 2em;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
+      border: none;
+      padding: 1em;
       text-align: left;
     }
     th {
-      background-color: #333;
+      background-color: #6a5acd;
       color: white;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
     }
     label {
       display: block;
-      margin-top: 10px;
+      margin-top: 1em;
+      font-weight: bold;
     }
     input[type="checkbox"] {
-      margin-right: 5px;
+      margin-right: 0.5em;
     }
     button {
-      background-color: #4CAF50;
+      background-color: #70db93; /* Vert */
       color: white;
-      padding: 10px 15px;
+      padding: 0.75em 1.5em;
       border: none;
-      border-radius: 5px;
+      border-radius: 25px;
       cursor: pointer;
-      margin-top: 10px;
+      margin-top: 1em;
+      transition: background-color 0.3s;
     }
     button:hover {
-      background-color: #3e8e41;
+      background-color: #5cb87d;
+    }
+    #exercice-zone {
+      margin-top: 2em;
+    }
+    #exercice-zone label {
+      margin-bottom: 0.5em;
+    }
+    #exercice-zone input[type="text"] {
+      padding: 0.75em;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 300px;
+      margin-top: 0.5em;
+    }
+    .resultat-emoji {
+      margin-left: 0.5em;
+      font-size: 1.2em;
     }
   </style>
 </head>
@@ -309,12 +340,12 @@
         return;
       }
 
-      exercices = []; // Réinitialise la liste des exercices
+      exercices = [];
 
       const verbes = ["parler", "finir", "prendre"];
       const personnes = ["je", "tu", "il", "nous", "vous", "ils"];
 
-      for (let i = 0; i < 5; i++) { // Générer 5 exercices
+      for (let i = 0; i < 5; i++) {
         const tempsAleatoire = tempsChoisis[Math.floor(Math.random() * tempsChoisis.length)];
         const verbeAleatoire = verbes[Math.floor(Math.random() * verbes.length)];
         const personneAleatoire = personnes[Math.floor(Math.random() * personnes.length)];
@@ -334,7 +365,7 @@
 
     function afficherExercices() {
       const exerciceZone = document.getElementById("exercice-zone");
-      exerciceZone.innerHTML = ""; // Efface l'exercice précédent
+      exerciceZone.innerHTML = "";
 
       exercices.forEach((exercice, index) => {
         const label = document.createElement("label");
@@ -349,27 +380,30 @@
       });
     }
 
-    function corrigerExercice() {
-      let correct = true;
-      const inputs = document.querySelectorAll("#exercice-zone input");
-      let resultatText = "";
+   function corrigerExercice() {
+    let resultatText = "";
+    const inputs = document.querySelectorAll("#exercice-zone input");
+    const resultatDiv = document.getElementById("resultat");
+    resultatDiv.innerHTML = ""; // Efface les résultats précédents
 
-      inputs.forEach(input => {
-        const index = input.dataset.index;
+    inputs.forEach((input, index) => {
         const reponseUtilisateur = input.value.trim();
+        const reponseAttendue = exercices[index].reponse.trim();
+        const reponseUtilisateurNormalizee = reponseUtilisateur.toLowerCase();
+        const reponseAttendueNormalizee = exercices[index].reponse.toLowerCase().trim();
 
-        if (reponseUtilisateur !== exercices[index].reponse) {
-          correct = false;
-          resultatText += `Erreur à la question ${parseInt(index) + 1}. La bonne réponse était ${exercices[index].reponse}. `;
-        }
-      });
+        let estCorrect = reponseUtilisateurNormalizee === reponseAttendueNormalizee;
 
-      if (correct) {
-        resultatText = "Bravo ! Tout est correct.";
-      }
+        let emoji = estCorrect ? "✔️" : "❌";
+        let message = `Question ${index + 1}: Vous avez répondu '${reponseUtilisateur}'. `;
+        message += estCorrect ? "Correct !" : `Incorrect. La bonne réponse était '${exercices[index].reponse}'.`;
+        message += ` ${emoji} <br>`;
 
-      document.getElementById("resultat").innerText = resultatText;
-    }
+        resultatText += message;
+    });
+
+    resultatDiv.innerHTML = resultatText;
+}
 
     function conjuguer(verbe, temps, personne) {
       switch (temps) {
