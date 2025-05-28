@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site d'Exercices en Français</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f7f7f7;
+    }
+    header {
+      background-color: #4CAF50;
+      padding: 10px;
+      color: white;
+      text-align: center;
+    }
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      background-color: #333;
+    }
+    nav ul li {
+      margin: 0;
+    }
+    nav ul li a {
+      display: block;
+      padding: 14px 20px;
+      color: white;
+      text-decoration: none;
+    }
+    nav ul li a:hover {
+      background-color: #575757;
+    }
+    section {
+      padding: 20px;
+      display: none;
+    }
+    section.active {
+      display: block;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+    form > label {
+      display: block;
+      margin-top: 10px;
+    }
+    form > input, form > select, form > button {
+      margin-top: 5px;
+      padding: 8px;
+      width: 100%;
+      max-width: 300px;
+      box-sizing: border-box;
+    }
+    #resultat {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Site d'Exercices en Français</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#temps" class="nav-link active">Les Temps</a></li>
+      <li><a href="#exercices" class="nav-link">Exercices</a></li>
+    </ul>
+  </nav>
+
+  <section id="temps" class="active">
+    <h2>Les Temps (CE1)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Temps</th>
+          <th>Exemple</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Imparfait</td>
+          <td>Je parlais</td>
+        </tr>
+        <tr>
+          <td>Présent</td>
+          <td>Je parle</td>
+        </tr>
+        <tr>
+          <td>Futur</td>
+          <td>Je parlerai</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Pour les autres niveaux, d'autres temps pourront être ajoutés ultérieurement.</p>
+  </section>
+
+  <section id="exercices">
+    <h2>Exercices</h2>
+    <p>Complétez le mot avec la terminaison appropriée selon le temps choisi.</p>
+    <form id="exerciceForm">
+      <label for="radical">Radical du mot :</label>
+      <input type="text" id="radical" placeholder="Exemple : parl">
+      
+      <label for="tempsSelect">Choisissez le temps :</label>
+      <select id="tempsSelect">
+        <option value="imparfait">Imparfait</option>
+        <option value="present">Présent</option>
+        <option value="futur">Futur</option>
+      </select>
+      
+      <label for="reponse">Terminaison :</label>
+      <input type="text" id="reponse" placeholder="Exemple : ais">
+      
+      <button type="button" onclick="verifierReponse()">Vérifier</button>
+    </form>
+    <div id="resultat"></div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 - Site d'Exercices en Français</p>
+  </footer>
+
+  <script>
+    // Gestion de la navigation entre les onglets
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        // Supprime la classe active sur tous les liens et sections
+        navLinks.forEach(lnk => lnk.classList.remove('active'));
+        sections.forEach(sec => sec.classList.remove('active'));
+
+        // Ajoute la classe active au lien cliqué et à la section correspondante
+        this.classList.add('active');
+        const sectionId = this.getAttribute('href');
+        document.querySelector(sectionId).classList.add('active');
+      });
+    });
+
+    // Fonction de vérification des exercices
+    function verifierReponse() {
+      const radical = document.getElementById("radical").value.trim();
+      const temps = document.getElementById("tempsSelect").value;
+      const reponse = document.getElementById("reponse").value.trim();
+      let message = "";
+
+      // Pour cet exemple, on définit des réponses simples pour le radical "parl"
+      if (temps === "imparfait") {
+        if (radical.toLowerCase() === "parl" && reponse === "ais") {
+          message = "Correct ! (Imparfait de 'parler': je parlais)";
+        } else {
+          message = "Incorrect. Essayez encore.";
+        }
+      } else if (temps === "present") {
+        if (radical.toLowerCase() === "parl" && reponse === "e") {
+          message = "Correct ! (Présent de 'parler': je parle)";
+        } else {
+          message = "Incorrect. Essayez encore.";
+        }
+      } else if (temps === "futur") {
+        if (radical.toLowerCase() === "parl" && reponse === "erai") {
+          message = "Correct ! (Futur de 'parler': je parlerai)";
+        } else {
+          message = "Incorrect. Essayez encore.";
+        }
+      }
+      document.getElementById("resultat").innerText = message;
+    }
+  </script>
+</body>
+</html>
