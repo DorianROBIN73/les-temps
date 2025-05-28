@@ -2,46 +2,53 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Site d'Exercices en Français</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apprendre et s'exercer en français</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f7f7f7;
+      background-color: #f4f4f4;
     }
     header {
-      background-color: #4CAF50;
-      padding: 10px;
+      background-color: #333;
       color: white;
+      padding: 1em 0;
       text-align: center;
     }
+    nav {
+      background-color: #444;
+      color: white;
+      padding: 0.5em 0;
+    }
     nav ul {
-      list-style-type: none;
-      display: flex;
-      justify-content: center;
-      margin: 0;
       padding: 0;
-      background-color: #333;
-    }
-    nav ul li {
       margin: 0;
+      list-style: none;
+      text-align: center;
     }
-    nav ul li a {
-      display: block;
-      padding: 14px 20px;
+    nav li {
+      display: inline;
+      margin: 0 1em;
+    }
+    nav a {
       color: white;
       text-decoration: none;
+      padding: 0.5em 1em;
+      border-radius: 5px;
     }
-    nav ul li a:hover {
-      background-color: #575757;
+    nav a:hover {
+      background-color: #555;
     }
-    section {
+    #content {
       padding: 20px;
-      display: none;
     }
-    section.active {
+    .tab-content {
+      display: none;
+      margin-top: 20px;
+    }
+    .tab-content.active {
       display: block;
     }
     table {
@@ -49,152 +56,409 @@
       border-collapse: collapse;
       margin-bottom: 20px;
     }
-    table, th, td {
-      border: 1px solid #ddd;
-    }
     th, td {
-      text-align: left;
+      border: 1px solid #ddd;
       padding: 8px;
+      text-align: left;
     }
     th {
-      background-color: #4CAF50;
-      color: white;
-    }
-    footer {
       background-color: #333;
       color: white;
-      text-align: center;
-      padding: 10px;
     }
-    form > label {
+    label {
       display: block;
       margin-top: 10px;
     }
-    form > input, form > select, form > button {
-      margin-top: 5px;
-      padding: 8px;
-      width: 100%;
-      max-width: 300px;
-      box-sizing: border-box;
+    input[type="checkbox"] {
+      margin-right: 5px;
     }
-    #resultat {
-      margin-top: 15px;
-      font-weight: bold;
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #3e8e41;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>Site d'Exercices en Français</h1>
+    <h1>Apprendre et s'exercer en français</h1>
   </header>
 
   <nav>
     <ul>
-      <li><a href="#temps" class="nav-link active">Les Temps</a></li>
-      <li><a href="#exercices" class="nav-link">Exercices</a></li>
+      <li><a href="#" data-tab="lessons">Leçons</a></li>
+      <li><a href="#" data-tab="exercises">Exercices</a></li>
     </ul>
   </nav>
 
-  <section id="temps" class="active">
-    <h2>Les Temps (CE1)</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Temps</th>
-          <th>Exemple</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Imparfait</td>
-          <td>Je parlais</td>
-        </tr>
-        <tr>
-          <td>Présent</td>
-          <td>Je parle</td>
-        </tr>
-        <tr>
-          <td>Futur</td>
-          <td>Je parlerai</td>
-        </tr>
-      </tbody>
-    </table>
-    <p>Pour les autres niveaux, d'autres temps pourront être ajoutés ultérieurement.</p>
-  </section>
+  <div id="content">
+    <div id="lessons" class="tab-content active">
+      <h2>Leçons de Conjugaison</h2>
+      
+      <h3>Temps étudiés en CE1</h3>
+      
+      <h4>Présent</h4>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Parler</th>
+            <th>Finir</th>
+            <th>Prendre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Je</td>
+            <td>parle</td>
+            <td>finis</td>
+            <td>prends</td>
+          </tr>
+          <tr>
+            <td>Tu</td>
+            <td>parles</td>
+            <td>finis</td>
+            <td>prends</td>
+          </tr>
+          <tr>
+            <td>Il/Elle/On</td>
+            <td>parle</td>
+            <td>finit</td>
+            <td>prend</td>
+          </tr>
+          <tr>
+            <td>Nous</td>
+            <td>parlons</td>
+            <td>finissons</td>
+            <td>prenons</td>
+          </tr>
+          <tr>
+            <td>Vous</td>
+            <td>parlez</td>
+            <td>finissez</td>
+            <td>prenez</td>
+          </tr>
+          <tr>
+            <td>Ils/Elles</td>
+            <td>parlent</td>
+            <td>finissent</td>
+            <td>prennent</td>
+          </tr>
+        </tbody>
+      </table>
 
-  <section id="exercices">
-    <h2>Exercices</h2>
-    <p>Complétez le mot avec la terminaison appropriée selon le temps choisi.</p>
-    <form id="exerciceForm">
-      <label for="radical">Radical du mot :</label>
-      <input type="text" id="radical" placeholder="Exemple : parl">
-      
-      <label for="tempsSelect">Choisissez le temps :</label>
-      <select id="tempsSelect">
-        <option value="imparfait">Imparfait</option>
-        <option value="present">Présent</option>
-        <option value="futur">Futur</option>
-      </select>
-      
-      <label for="reponse">Terminaison :</label>
-      <input type="text" id="reponse" placeholder="Exemple : ais">
-      
-      <button type="button" onclick="verifierReponse()">Vérifier</button>
-    </form>
-    <div id="resultat"></div>
-  </section>
+      <h4>Imparfait</h4>
+      <table>
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>Parler</th>
+                  <th>Finir</th>
+                  <th>Prendre</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Je</td>
+                  <td>parlais</td>
+                  <td>finissais</td>
+                  <td>prenais</td>
+              </tr>
+              <tr>
+                  <td>Tu</td>
+                  <td>parlais</td>
+                  <td>finissais</td>
+                  <td>prenais</td>
+              </tr>
+              <tr>
+                  <td>Il/Elle/On</td>
+                  <td>parlait</td>
+                  <td>finissait</td>
+                  <td>prenait</td>
+              </tr>
+              <tr>
+                  <td>Nous</td>
+                  <td>parlions</td>
+                  <td>finissions</td>
+                  <td>prenions</td>
+              </tr>
+              <tr>
+                  <td>Vous</td>
+                  <td>parliez</td>
+                  <td>finissiez</td>
+                  <td>preniez</td>
+              </tr>
+              <tr>
+                  <td>Ils/Elles</td>
+                  <td>parlaient</td>
+                  <td>finissaient</td>
+                  <td>prenaient</td>
+              </tr>
+          </tbody>
+      </table>
 
-  <footer>
-    <p>&copy; 2025 - Site d'Exercices en Français</p>
-  </footer>
+      <h4>Futur Simple</h4>
+      <table>
+          <thead>
+              <tr>
+                  <th></th>
+                  <th>Parler</th>
+                  <th>Finir</th>
+                  <th>Prendre</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <td>Je</td>
+                  <td>parlerai</td>
+                  <td>finirai</td>
+                  <td>prendrai</td>
+              </tr>
+              <tr>
+                  <td>Tu</td>
+                  <td>parleras</td>
+                  <td>finiras</td>
+                  <td>prendras</td>
+              </tr>
+              <tr>
+                  <td>Il/Elle/On</td>
+                  <td>parlera</td>
+                  <td>finira</td>
+                  <td>prendra</td>
+              </tr>
+              <tr>
+                  <td>Nous</td>
+                  <td>parlerons</td>
+                  <td>finirons</td>
+                  <td>prendrons</td>
+              </tr>
+              <tr>
+                  <td>Vous</td>
+                  <td>parlerez</td>
+                  <td>finirez</td>
+                  <td>prendrez</td>
+              </tr>
+              <tr>
+                  <td>Ils/Elles</td>
+                  <td>parleront</td>
+                  <td>finiront</td>
+                  <td>prendront</td>
+              </tr>
+          </tbody>
+      </table>
+
+      <h3>Autres temps (Niveaux supérieurs)</h3>
+      <ul>
+        <li>Passé simple (CE2)</li>
+        <li>Passé composé (CM1)</li>
+        <li>Plus-que-parfait (CM2)</li>
+        <li>Futur antérieur (Collège)</li>
+        </ul>
+    </div>
+
+    <div id="exercises" class="tab-content">
+      <h2>Exercices de Conjugaison</h2>
+      <label>
+        Choisir les temps :
+        <input type="checkbox" id="present" value="present">Présent
+        <input type="checkbox" id="imparfait" value="imparfait">Imparfait
+        <input type="checkbox" id="futur" value="futur">Futur Simple
+      </label>
+      <button onclick="genererExercice()">Générer un exercice</button>
+
+      <div id="exercice-zone">
+        <!-- L'exercice sera généré ici -->
+      </div>
+
+      <button onclick="corrigerExercice()">Corriger</button>
+      <div id="resultat"></div>
+    </div>
+  </div>
 
   <script>
-    // Gestion de la navigation entre les onglets
-    const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section');
+    const tabLinks = document.querySelectorAll('nav a');
+    const tabContents = document.querySelectorAll('.tab-content');
+    let exercices = [];
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', function (e) {
+    tabLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
         e.preventDefault();
-        // Supprime la classe active sur tous les liens et sections
-        navLinks.forEach(lnk => lnk.classList.remove('active'));
-        sections.forEach(sec => sec.classList.remove('active'));
+        const tabId = this.dataset.tab;
 
-        // Ajoute la classe active au lien cliqué et à la section correspondante
+        tabLinks.forEach(lnk => lnk.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
         this.classList.add('active');
-        const sectionId = this.getAttribute('href');
-        document.querySelector(sectionId).classList.add('active');
+        document.getElementById(tabId).classList.add('active');
       });
     });
 
-    // Fonction de vérification des exercices
-    function verifierReponse() {
-      const radical = document.getElementById("radical").value.trim();
-      const temps = document.getElementById("tempsSelect").value;
-      const reponse = document.getElementById("reponse").value.trim();
-      let message = "";
+    function genererExercice() {
+      const tempsChoisis = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.value);
 
-      // Pour cet exemple, on définit des réponses simples pour le radical "parl"
-      if (temps === "imparfait") {
-        if (radical.toLowerCase() === "parl" && reponse === "ais") {
-          message = "Correct ! (Imparfait de 'parler': je parlais)";
-        } else {
-          message = "Incorrect. Essayez encore.";
-        }
-      } else if (temps === "present") {
-        if (radical.toLowerCase() === "parl" && reponse === "e") {
-          message = "Correct ! (Présent de 'parler': je parle)";
-        } else {
-          message = "Incorrect. Essayez encore.";
-        }
-      } else if (temps === "futur") {
-        if (radical.toLowerCase() === "parl" && reponse === "erai") {
-          message = "Correct ! (Futur de 'parler': je parlerai)";
-        } else {
-          message = "Incorrect. Essayez encore.";
-        }
+      if (tempsChoisis.length === 0) {
+        alert("Veuillez sélectionner au moins un temps.");
+        return;
       }
-      document.getElementById("resultat").innerText = message;
+
+      exercices = []; // Réinitialise la liste des exercices
+
+      const verbes = ["parler", "finir", "prendre"];
+      const personnes = ["je", "tu", "il", "nous", "vous", "ils"];
+
+      for (let i = 0; i < 5; i++) { // Générer 5 exercices
+        const tempsAleatoire = tempsChoisis[Math.floor(Math.random() * tempsChoisis.length)];
+        const verbeAleatoire = verbes[Math.floor(Math.random() * verbes.length)];
+        const personneAleatoire = personnes[Math.floor(Math.random() * personnes.length)];
+
+        let bonneReponse = conjuguer(verbeAleatoire, tempsAleatoire, personneAleatoire);
+
+        exercices.push({
+          verbe: verbeAleatoire,
+          temps: tempsAleatoire,
+          personne: personneAleatoire,
+          reponse: bonneReponse
+        });
+      }
+
+      afficherExercices();
+    }
+
+    function afficherExercices() {
+      const exerciceZone = document.getElementById("exercice-zone");
+      exerciceZone.innerHTML = ""; // Efface l'exercice précédent
+
+      exercices.forEach((exercice, index) => {
+        const label = document.createElement("label");
+        label.innerText = `Conjuguez le verbe ${exercice.verbe} au ${exercice.temps} à la personne ${exercice.personne} :`;
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.dataset.index = index;
+
+        exerciceZone.appendChild(label);
+        exerciceZone.appendChild(input);
+      });
+    }
+
+    function corrigerExercice() {
+      let correct = true;
+      const inputs = document.querySelectorAll("#exercice-zone input");
+      let resultatText = "";
+
+      inputs.forEach(input => {
+        const index = input.dataset.index;
+        const reponseUtilisateur = input.value.trim();
+
+        if (reponseUtilisateur !== exercices[index].reponse) {
+          correct = false;
+          resultatText += `Erreur à la question ${parseInt(index) + 1}. La bonne réponse était ${exercices[index].reponse}. `;
+        }
+      });
+
+      if (correct) {
+        resultatText = "Bravo ! Tout est correct.";
+      }
+
+      document.getElementById("resultat").innerText = resultatText;
+    }
+
+    function conjuguer(verbe, temps, personne) {
+      switch (temps) {
+        case "present":
+          switch (verbe) {
+            case "parler":
+              if (personne === "je") return "parle";
+              if (personne === "tu") return "parles";
+              if (personne === "il") return "parle";
+              if (personne === "nous") return "parlons";
+              if (personne === "vous") return "parlez";
+              if (personne === "ils") return "parlent";
+              break;
+            case "finir":
+              if (personne === "je") return "finis";
+              if (personne === "tu") return "finis";
+              if (personne === "il") return "finit";
+              if (personne === "nous") return "finissons";
+              if (personne === "vous") return "finissez";
+              if (personne === "ils") return "finissent";
+              break;
+            case "prendre":
+              if (personne === "je") return "prends";
+              if (personne === "tu") return "prends";
+              if (personne === "il") return "prend";
+              if (personne === "nous") return "prenons";
+              if (personne === "vous") return "prenez";
+              if (personne === "ils") return "prennent";
+              break;
+          }
+          break;
+        case "imparfait":
+          switch (verbe) {
+            case "parler":
+              if (personne === "je") return "parlais";
+              if (personne === "tu") return "parlais";
+              if (personne === "il") return "parlait";
+              if (personne === "nous") return "parlions";
+              if (personne === "vous") return "parliez";
+              if (personne === "ils") return "parlaient";
+              break;
+            case "finir":
+              if (personne === "je") return "finissais";
+              if (personne === "tu") return "finissais";
+              if (personne === "il") return "finissait";
+              if (personne === "nous") return "finissions";
+              if (personne === "vous") return "finissiez";
+              if (personne === "ils") return "finissaient";
+              break;
+            case "prendre":
+              if (personne === "je") return "prenais";
+              if (personne === "tu") return "prenais";
+              if (personne === "il") return "prenait";
+              if (personne === "nous") return "prenions";
+              if (personne === "vous") return "preniez";
+              if (personne === "ils") return "prenaient";
+              break;
+          }
+          break;
+        case "futur":
+          switch (verbe) {
+            case "parler":
+              if (personne === "je") return "parlerai";
+              if (personne === "tu") return "parleras";
+              if (personne === "il") return "parlera";
+              if (personne === "nous") return "parlerons";
+              if (personne === "vous") return "parlerez";
+              if (personne === "ils") return "parleront";
+              break;
+            case "finir":
+              if (personne === "je") return "finirai";
+              if (personne === "tu") return "finiras";
+              if (personne === "il") return "finira";
+              if (personne === "nous") return "finirons";
+              if (personne === "vous") return "finirez";
+              if (personne === "ils") return "finiront";
+              break;
+            case "prendre":
+              if (personne === "je") return "prendrai";
+              if (personne === "tu") return "prendras";
+              if (personne === "il") return "prendra";
+              if (personne === "nous") return "prendrons";
+              if (personne === "vous") return "prendrez";
+              if (personne === "ils") return "prendront";
+              break;
+          }
+          break;
+      }
+      return "";
     }
   </script>
 </body>
